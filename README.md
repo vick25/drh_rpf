@@ -2,7 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, add a .env.local file to the root
+
+Second, added your private Kobo Token value and eventually the ASSETID value of a specific form value in the .env.local
+
+Third, run the development server:
 
 ```bash
 npm run dev
