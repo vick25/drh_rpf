@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const token = process.env.TOKEN;
 const assetID = process.env.ASSETID;
+const headers = { "Authorization": `Token ${token}` };
 
 export const fetchKoboForms = async () => {
-    const url = "https://kf.kobotoolbox.org/api/v2/assets.json"; // Replace with your actual kpi URL
-    const headers = { "Authorization": `Token ${token}` };
+    const endpoint = "https://kf.kobotoolbox.org/api/v2/assets.json"; // Replace with your actual kpi URL
     try {
-        // const response = await axios.get(url, { headers: headers });
-        const response = await fetch(url, { headers: headers });
+        // const response = await axios.get(endpoint, { headers: headers });
+        const response = await fetch(endpoint, { headers: headers }, { next: { revalidate: 60 } });
         const data = await response.json();
         // console.log(await response.json());
         // console.log(response.data);
@@ -31,7 +31,6 @@ export const fetchFormData = async (formId, q, page, itemsPerPage) => {
     // const filteredArray = paginatedData.filter(obj => regex.test(obj['group_hs1kr38/province']));
 
     //https://kf.kobotoolbox.org/api/v2/assets/${formId}/data.json
-    const headers = { "Authorization": `Token ${token}` };
     try {
         const response = await axios.get(`https://kf.kobotoolbox.org/api/v2/assets/${formId}/data/`, { headers: headers });
         const count = await response.data.results.filter(obj => regex.test(obj['group_hs1kr38/province'])).length;
@@ -54,7 +53,6 @@ export const fetchFormData = async (formId, q, page, itemsPerPage) => {
 };
 
 export const fetchFormUniqueData = async (formUniqueId) => {
-    const headers = { "Authorization": `Token ${token}` };
     try {
         const response = await axios.get(`https://kf.kobotoolbox.org/api/v2/assets/${assetID}/data/`, { headers: headers });
         const assets = response.data.results;
@@ -67,9 +65,8 @@ export const fetchFormUniqueData = async (formUniqueId) => {
 };
 
 export const fetchGeoJsonData = async () => {
-    const headers = { "Authorization": `Token ${token}` };
     try {
-        const response = await fetch(`https://kf.kobotoolbox.org/api/v2/assets/${assetID}/data.geojson/`, { headers: headers });
+        const response = await fetch(`https://kf.kobotoolbox.org/api/v2/assets/${assetID}/data.geojson/`, { headers: headers }, { next: { revalidate: 600 } });
         const assets = await response.json();
         return assets;
     } catch (error) {
