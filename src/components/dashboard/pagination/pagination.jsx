@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./pagination.module.css";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import styles from "./pagination.module.css";
 
-const Pagination = ({ count }) => {
+const Pagination = ({ count, itemsPerPage }) => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -11,10 +11,12 @@ const Pagination = ({ count }) => {
   const page = searchParams.get("page") || 1;
 
   const params = new URLSearchParams(searchParams);
-  const ITEM_PER_PAGE = 2;
+  // const ITEM_PER_PAGE = 3;
 
-  const hasPrev = ITEM_PER_PAGE * (parseInt(page) - 1) > 0;
-  const hasNext = ITEM_PER_PAGE * (parseInt(page) - 1) + ITEM_PER_PAGE < count;
+  // const totalPages = Math.ceil(count / itemsPerPage);
+
+  const hasPrev = itemsPerPage * (parseInt(page) - 1) > 0;
+  const hasNext = itemsPerPage * (parseInt(page) - 1) + itemsPerPage < count;
 
   const handleChangePage = (type) => {
     type === "prev"

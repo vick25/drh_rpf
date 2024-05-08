@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
 import {
@@ -83,16 +84,22 @@ const Sidebar = async () => {
   return (
     <div className={styles.container}>
       <div className={styles.user}>
-        <Image
-          className={styles.userImage}
-          src={"/logo-medd.jpg" || "/noavatar.png"}
-          alt="MEDD"
-          width="70"
-          height="70"
-        />
+        <Link
+          className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
+          href="/"
+        >
+          <Image
+            className={styles.userImage}
+            src={"/logo-medd.jpg" || "/noavatar.png"}
+            alt="MEDD"
+            width="70"
+            height="70"
+          />
+        </Link>
         <div className={styles.userDetail}>
           <span className={styles.username} title="Direction de Reboisement et Horticulture">DRH</span>
           <span className={styles.userTitle}>Initiatives pour la restauration des Paysages Forestiers</span>
+          <span className="text-rose-700 text-opacity-90 font-bold">v. alpha</span>
         </div>
       </div>
       <ul className={styles.list}>

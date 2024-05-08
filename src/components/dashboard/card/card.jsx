@@ -19,7 +19,7 @@ const Card = ({ item }) => {
           <span className={item.deployment__submission_count > 0 ? styles.positive : styles.negative}>
             {item.deployment__submission_count}
           </span>{" "}
-          {item.deployment__submission_count > 1 ? "forms" : "form"} collected.
+          {item.deployment__submission_count > 1 ? "formulaires collectés" : "formulaire collecté"}.
         </span>
       </div>
     </div>

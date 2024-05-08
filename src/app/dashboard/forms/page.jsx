@@ -9,19 +9,21 @@ const assetID = process.env.ASSETID;
 const FormsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
+
+  const ITEM_PER_PAGE = 3;
   // const { count, forms } = await fetchforms(q, page);
 
-  const { count, results } = await fetchFormData(assetID);
-  // console.log(count, Object.keys(results[0] || {}).map(key => key).filter(item => {
+  const { count, paginatedData } = await fetchFormData(assetID, q, page, ITEM_PER_PAGE);
+  // console.log(count, Object.keys(paginatedData[0] || {}).map(key => key).filter(item => {
   //   return item.startsWith('_id') ||
   //     item.startsWith('group') ||
   //     item === 'nom_enqueteur' ||
   //     item === '_geolocation' ||
   //     item === '_attachments';
   // }));
-  // console.log(results[0]._geolocation, results[0]['group_do9po75/avantages_socioeconomiques'])
+  // console.log(paginatedData[0]._geolocation, paginatedData[0]['group_do9po75/avantages_socioeconomiques'])
 
-  // const heads = Object.keys(results[0] || {}).map(key => key).filter(item => {
+  // const heads = Object.keys(paginatedData[0] || {}).map(key => key).filter(item => {
   //   return item.startsWith('_id') ||
   //     item.startsWith('group') ||
   //     item === 'nom_enqueteur' ||
@@ -29,15 +31,13 @@ const FormsPage = async ({ searchParams }) => {
   //     item === '_attachments';
   // });
 
-
-
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search placeholder="Search for a form..." />
-        <Link href="/dashboard/forms/add">
-          <button className={styles.addButton} disabled>Add New</button>
-        </Link>
+        <Search placeholder="Search for a form province ..." />
+        {/* <Link href="/dashboard/forms/add">
+          <button className={styles.addButton} disabled>New Form</button>
+        </Link> */}
       </div>
 
       <table className={styles.table}>
@@ -60,7 +60,7 @@ const FormsPage = async ({ searchParams }) => {
           </tr>
         </thead>
         <tbody>
-          {results.map((form) => (
+          {paginatedData.map((form) => (
             <tr key={form._id}>
               <td>
                 {form['group_io1lf88/noms_complets']}
@@ -95,7 +95,7 @@ const FormsPage = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Pagination count={count} />
+      <Pagination count={count} itemsPerPage={ITEM_PER_PAGE} />
     </div>
   );
 };

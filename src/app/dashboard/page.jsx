@@ -36,6 +36,7 @@ const Dashboard = async () => {
   const assetID = process.env.ASSETID;
 
   const koboForms = await fetchKoboForms();
+
   const uniqueForm = koboForms.filter((form) => form.uid === assetID);
   // console.log(uniqueForm[0].settings.description);
   // console.log(uniqueForm[0].name);
@@ -50,6 +51,7 @@ const Dashboard = async () => {
             <Card item={item} key={item.version_id} />
           ))}
         </div>
+
         {/* <Transactions />*/
           <Chart />
         }
@@ -59,12 +61,10 @@ const Dashboard = async () => {
           {
             uniqueForm.map(uf => (
               uf.export_settings.map(setting => (
-                <div key={setting.uid}>
-                  <div>
-                    <Link href={setting.data_url_csv} target="_blank" rel="noopener noreferrer">CSV 🔗</Link>
-                    <br />
-                    <Link href={setting.data_url_xlsx} target="_blank" rel="noopener noreferrer">XLSX 🔗</Link>
-                  </div>
+                <div key={setting.uid} className="flex justify-around rounded-md border-b mt-2 py-4 text-base leading-7 text-gray-500">
+                  <Link className="cursor-pointer hover:text-blue-500" href={setting.data_url_csv} target="_blank" rel="noopener noreferrer">CSV 🔗</Link>
+                  <br />
+                  <Link className="cursor-pointer hover:text-green-500" href={setting.data_url_xlsx} target="_blank" rel="noopener noreferrer">XLSX 🔗</Link>
                 </div>
               ))
             ))
