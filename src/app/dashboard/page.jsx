@@ -1,36 +1,11 @@
 // import { cards } from "../lib/data";
+import { fetchKoboForms } from "@/lib/data";
+import Link from "next/link";
 import Card from "../../components/dashboard/card/card";
 import Chart from "../../components/dashboard/chart/chart";
 import styles from "../../components/dashboard/dashboard.module.css";
-import { fetchKoboForms } from "@/lib/data";
-import Link from "next/link";
 // import Rightbar from "../components/dashboard/rightbar/rightbar";
 // import Transactions from "../components/dashboard/transactions/transactions";
-
-
-
-// DUMMY DATA
-
-export const cards = [
-  {
-    id: 1,
-    title: "Total Forms",
-    number: 10.928,
-    change: 12,
-  },
-  {
-    id: 2,
-    title: "Stock",
-    number: 8.236,
-    change: -2,
-  },
-  {
-    id: 3,
-    title: "Revenue",
-    number: 6.642,
-    change: 18,
-  },
-];
 
 const Dashboard = async () => {
   const assetID = process.env.ASSETID;
@@ -72,9 +47,6 @@ const Dashboard = async () => {
         </div>
 
       </div>
-      {/* <div className={styles.side}>
-        <Rightbar />
-      </div> */}
     </div>
   );
 };
