@@ -1,19 +1,19 @@
 'use client';
-import React, { useRef, useState, useEffect } from "react";
-import { MapContainer, TileLayer, LayersControl, Popup, useMapEvents, CircleMarker, Tooltip, ScaleControl } from "react-leaflet";
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
+import React, { useEffect, useRef, useState } from "react";
+import { CircleMarker, LayersControl, MapContainer, Popup, TileLayer, Tooltip, useMapEvents } from "react-leaflet";
 // import markerIcon from "leaflet/dist/images/marker-icon.png";
 // import markerShadow from "leaflet/dist/images/marker-shadow.png";
 // import markerRetina from "leaflet/dist/images/marker-icon-2x.png";
-import "leaflet/dist/leaflet.css";
+import { kmlString } from "@/lib/kml";
 import "@changey/react-leaflet-markercluster/dist/styles.min.css";
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
-import 'leaflet-defaulticon-compatibility';
-import "leaflet-control-geocoder";
 import Leaflet from "leaflet";
-import styles from "./maps.module.css";
+import "leaflet-control-geocoder";
+import 'leaflet-defaulticon-compatibility';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
+import "leaflet/dist/leaflet.css";
 import Link from "next/link";
-import { kmlString } from "../../../lib/kml";
+import styles from "./maps.module.css";
 // import { popup } from "leaflet";
 
 // Leaflet.Icon.Default.mergeOptions({
@@ -210,7 +210,9 @@ const MapComponent = ({ geojsonData }) => {
             <Popup className={styles.customPopup} ref={popupRef}>
                 <b>{position[0]}, {position[1]}</b>
                 <br /><br />
-                <a href={`data:application/vnd.google-earth.kml;base64,${btoa(kmlContent)}`} download={`${title.replaceAll(' ', '_')}.kml`}>Download Point KML</a>
+                <a href={`data:application/vnd.google-earth.kml;base64,${btoa(kmlContent)}`} download={`${title.replaceAll(' ', '_')}.kml`} title="Open Google Earth Pro">
+                    Download Point KML
+                </a>
                 <br /><br />
                 {<Link href={`/dashboard/forms/${id}`}>Afficher informations...</Link>}
             </Popup>

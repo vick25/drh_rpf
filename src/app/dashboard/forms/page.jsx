@@ -1,8 +1,8 @@
+import styles from "@/components/dashboard/forms/forms.module.css";
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
-import styles from "@/components/dashboard/forms/forms.module.css";
-import Link from "next/link";
 import { fetchFormData } from "@/lib/data";
+import Link from "next/link";
 
 const assetID = process.env.ASSETID;
 
@@ -40,39 +40,39 @@ const FormsPage = async ({ searchParams }) => {
         </Link> */}
       </div>
 
-      <table className={styles.table}>
-        <thead>
+      <table className="w-full table-auto py-4 mt-6">
+        <thead className="bg-gray-100 dark:bg-gray-800 rounded-sm">
           <tr>
             {/* {heads.map(key => (
               <th key={key}>{key}</th>
             ))} */}
           </tr>
           <tr>
-            <td>Name</td>
-            <td>Date</td>
-            <td>Sexe</td>
-            <td>Structure</td>
-            <td>Fonction</td>
-            <td>Province</td>
-            <td>Territoire</td>
-            <td>Superficie</td>
-            <td>Geolocalisation</td>
+            <th>Noms</th>
+            <th>Date</th>
+            <th>Sexe</th>
+            <th>Structure</th>
+            <th>Fonction</th>
+            <th>Province</th>
+            <th>Territoire</th>
+            <th>Superficie</th>
+            <th>Geolocalisation</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
           {paginatedData.map((form) => (
             <tr key={form._id}>
-              <td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
                 {form['group_io1lf88/noms_complets']}
               </td>
-              <td>{form['group_io1lf88/entrevue_date']}</td>
-              <td>{form['group_io1lf88/sexe']}</td>
-              <td>{form['group_io1lf88/structure_execution']}</td>
-              <td>{form['group_io1lf88/fonction_enquete_structure']}</td>
-              <td>{form['group_hs1kr38/province']}</td>
-              <td>{form['group_hs1kr38/territoire_ville']}</td>
-              <td>{form['group_up0wa79/superficie_ha']}</td>
-              <td>{form['group_hs1kr38/geolocation']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_io1lf88/entrevue_date']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_io1lf88/sexe']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_io1lf88/structure_execution']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_io1lf88/fonction_enquete_structure']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_hs1kr38/province']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_hs1kr38/territoire_ville']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_up0wa79/superficie_ha']}</td>
+              <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{form['group_hs1kr38/geolocation']}</td>
               {/* <td>{form.isAdmin ? "Admin" : "Client"}</td>
               <td>{form.isActive ? "active" : "passive"}</td> */}
               {<td>
@@ -82,6 +82,8 @@ const FormsPage = async ({ searchParams }) => {
                       View
                     </button>
                   </Link>
+                    //className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-50"
+                    //className="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"
                     /*<form action={deleteform}>
                       <input type="hidden" name="id" value={(form.id)} />
                       <button className={`${styles.button} ${styles.delete}`}>
