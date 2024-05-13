@@ -1,19 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  MdAnalytics,
+  MdDashboard,
+  MdHelpCenter,
+  MdOutlineSettings,
+  MdShoppingBag,
+  MdSupervisedUserCircle
+} from "react-icons/md";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
-import {
-  MdDashboard,
-  MdSupervisedUserCircle,
-  MdShoppingBag,
-  MdAttachMoney,
-  MdWork,
-  MdAnalytics,
-  MdPeople,
-  MdOutlineSettings,
-  MdHelpCenter,
-  MdLogout,
-} from "react-icons/md";
 // import { auth, signOut } from "@/app/auth";
 
 const menuItems = [
@@ -26,7 +22,7 @@ const menuItems = [
         icon: <MdDashboard />,
       },
       {
-        title: "Forms",
+        title: "Formulaires",
         path: "/dashboard/forms",
         icon: <MdSupervisedUserCircle />,
       },
@@ -85,7 +81,7 @@ const Sidebar = async () => {
     <div className={styles.container}>
       <div className={styles.user}>
         <Link
-          className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
+          className="mb-2 flex h-16 items-end justify-start rounded-md bg-blue-600 p-4 md:h-36"
           href="/"
         >
           <Image
@@ -102,6 +98,7 @@ const Sidebar = async () => {
           <span className="text-rose-700 text-opacity-90 font-bold">v. alpha</span>
         </div>
       </div>
+
       <ul className={styles.list}>
         {menuItems.map((cat) => (
           <li key={cat.title}>

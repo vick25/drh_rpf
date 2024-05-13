@@ -32,14 +32,15 @@ const Dashboard = async () => {
         }
 
         <div>
-          <h3>Export links</h3>
+          <h3 className="text-base">Export links</h3>
           {
             uniqueForm.map(uf => (
               uf.export_settings.map(setting => (
-                <div key={setting.uid} className="flex justify-around rounded-md border-b mt-2 py-4 text-base leading-7 text-gray-500">
-                  <Link className="cursor-pointer hover:text-blue-500" href={setting.data_url_csv} target="_blank" rel="noopener noreferrer">CSV 🔗</Link>
-                  <br />
-                  <Link className="cursor-pointer hover:text-green-500" href={setting.data_url_xlsx} target="_blank" rel="noopener noreferrer">XLSX 🔗</Link>
+                <div key={setting.uid} className="flex gap-3 text-center justify-around rounded-md border-b mt-2 py-4 text-base leading-7 text-gray-500">
+
+                  <Link className="w-full rounded bg-blue-100 cursor-pointer font-bold hover:text-blue-500" href={setting.data_url_csv} target="_blank" rel="noopener noreferrer">CSV 🔗</Link>
+
+                  <Link className=" w-full rounded bg-green-100 hover:text-green-500 cursor-pointer font-bold" href={setting.data_url_xlsx} target="_blank" rel="noopener noreferrer">XLSX 🔗</Link>
                 </div>
               ))
             ))
