@@ -7,6 +7,10 @@ import styles from "../../components/dashboard/dashboard.module.css";
 // import Rightbar from "../components/dashboard/rightbar/rightbar";
 // import Transactions from "../components/dashboard/transactions/transactions";
 
+export const metadata = {
+  title: 'Dashboard | DRH Restauration',
+};
+
 const Dashboard = async () => {
   const assetID = process.env.ASSETID;
 
