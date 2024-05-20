@@ -3,6 +3,10 @@ import styles from "@/components/dashboard/forms/singleForm/singleForm.module.cs
 import { fetchFormUniqueData } from "@/lib/data";
 import Image from "next/image";
 
+export const metadata = {
+  title: 'Formulaire | DRH Restauration',
+};
+
 const SingleFormPage = async ({ params }) => {
 
   const { id } = params;
