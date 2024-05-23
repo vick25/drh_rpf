@@ -22,14 +22,14 @@ const menuItems = [
         icon: <MdDashboard />,
       },
       {
-        title: "Formulaires",
-        path: "/dashboard/forms",
-        icon: <MdSupervisedUserCircle />,
-      },
-      {
         title: "Maps",
         path: "/dashboard/maps",
         icon: <MdShoppingBag />,
+      },
+      {
+        title: "Formulaires",
+        path: "/dashboard/forms",
+        icon: <MdSupervisedUserCircle />,
       },
       // {
       //   title: "Transactions",
