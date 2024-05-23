@@ -1,5 +1,9 @@
 import { fetchGeoJsonData } from '@/lib/data';
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'; import { Metadata } from 'next';
+
+export const metadata = {
+    title: 'Maps | DRH Restauration',
+};
 
 export const metadata = {
     title: 'Maps | DRH Restauration',
