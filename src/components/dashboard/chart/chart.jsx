@@ -1,8 +1,11 @@
 "use client"
 
-import { useEffect } from 'react';
-import styles from './chart.module.css'
-import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useEffect, useState } from 'react';
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import styles from './chart.module.css';
+import { useContext } from 'react';
+import { FormsContext } from '@/contexts/formsContext';
+// import { getFormDatas } from '@/lib/data';
 
 const data = [
   {
@@ -42,10 +45,27 @@ const data = [
   },
 ];
 
-const Chart = () => {
+const Chart = ({ formDatas }) => {
+  const { dispatch } = useContext(FormsContext);
+  const [kbformDatas, setKbFormDatas] = useState([]);
+  // console.log(formDatas);
 
-  useEffect(async () => {
-    const { count, paginatedData } = await fetchFormData(assetID, q, page, ITEM_PER_PAGE);
+  useEffect(() => {
+    const retrieveFormDatas = () => {
+      if (formDatas) {
+        console.log(formDatas)
+        setKbFormDatas(formDatas);
+      }
+    };
+
+    retrieveFormDatas();
+
+    dispatch({
+      type: 'SELECTED_FORMS',
+      payload: {
+        selectedForm: kbformDatas
+      }
+    })
   }, [])
 
 

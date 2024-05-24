@@ -8,7 +8,7 @@ const initialState = {
 
 const formsReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case SELECTED_FORMS:
+        case 'SELECTED_FORMS':
             return { ...state, selectedForm: payload.selectedForm }
 
         default:

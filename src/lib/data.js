@@ -73,3 +73,12 @@ export const fetchGeoJsonData = async () => {
         console.error('Error fetching form data:', error);
     }
 }
+
+export const getFormDatas = async () => {
+    try {
+        const response = await axios.get(`https://kf.kobotoolbox.org/api/v2/assets/${assetID}/data/`, { headers: headers });
+        return response.data.results;
+    } catch (error) {
+        console.error('Error fetching form data:', error);
+    }
+};

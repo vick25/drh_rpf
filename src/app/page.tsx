@@ -1,6 +1,6 @@
+import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Acceuil | DRH Restauration',
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="container flex flex-col text-center p-20 bg-light border-8 border-transparent m-2 rounded-2xl sm:p-2">
+    <div className="container m-auto flex flex-col text-center p-20 bg-light border-8 border-transparent rounded-2xl sm:p-2">
       <header>
         <div className="flex justify-around items-center">
           <Image
@@ -36,11 +36,9 @@ export default function Home() {
         <div className="container relative mx-auto mb-8">
           <div className="items-center flex flex-wrap">
             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-              <div className="pr-10">
-                <p className="mt-4 text-lg text-gray-300">
-                  C&apos;est dans ce contexte que le WWF RDC fait appel aux services d&apos;un consultant national pour fournir un soutien technique à la direction de reboisement et d&apos;horticulture à fin de constituer une base de données sur les initiatives de restauration des paysages forestiers en RDC.
-                </p>
-              </div>
+              <p className="mt-4 text-lg text-gray-300">
+                C&apos;est dans ce contexte que le WWF RDC fait appel aux services d&apos;un consultant national pour fournir un soutien technique à la direction de reboisement et d&apos;horticulture à fin de constituer une base de données sur les initiatives de restauration des paysages forestiers en RDC.
+              </p>
             </div>
           </div>
         </div>
