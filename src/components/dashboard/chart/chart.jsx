@@ -7,44 +7,6 @@ import { useContext } from 'react';
 import { FormsContext } from '@/contexts/formsContext';
 import { generateChartData } from '@/lib/utils';
 
-const data = [
-  {
-    name: "Sun",
-    visit: 4000,
-    click: 2400,
-  },
-  {
-    name: "Mon",
-    visit: 3000,
-    click: 1398,
-  },
-  {
-    name: "Tue",
-    visit: 2000,
-    click: 3800,
-  },
-  {
-    name: "Wed",
-    visit: 2780,
-    click: 3908,
-  },
-  {
-    name: "Thu",
-    visit: 1890,
-    click: 4800,
-  },
-  {
-    name: "Fri",
-    visit: 2390,
-    click: 3800,
-  },
-  {
-    name: "Sat",
-    visit: 3490,
-    click: 4300,
-  },
-];
-
 const Chart = ({ formDatas }) => {
   const { dispatch } = useContext(FormsContext);
   const [kbformDatas, setKbFormDatas] = useState([]);
@@ -53,29 +15,27 @@ const Chart = ({ formDatas }) => {
   useEffect(() => {
     const retrieveFormDatas = () => {
       if (formDatas) {
-        // console.log(formDatas)
         setKbFormDatas(formDatas);
+
+        dispatch({
+          type: 'SELECTED_FORMS',
+          payload: {
+            selectedForm: formDatas
+          }
+        })
       }
     };
 
     retrieveFormDatas();
-
-    dispatch({
-      type: 'SELECTED_FORMS',
-      payload: {
-        selectedForm: kbformDatas
-      }
-    })
   }, [])
 
   useEffect(() => {
     setChartDatas(generateChartData(kbformDatas));
-    console.log(chartDatas);
   }, [kbformDatas])
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Superficie Reboisé (ha)</h2>
+      <h2 className={styles.title}>Superficie Reboisée (ha)</h2>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
           width={500}
@@ -101,4 +61,4 @@ const Chart = ({ formDatas }) => {
   )
 }
 
-export default Chart
+export default Chart;

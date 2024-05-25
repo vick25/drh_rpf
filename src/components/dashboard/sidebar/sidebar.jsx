@@ -4,10 +4,10 @@ import {
   MdAnalytics,
   MdDashboard,
   MdHelpCenter,
-  MdOutlineSettings,
-  MdShoppingBag,
-  MdSupervisedUserCircle
+  MdOutlineSettings
 } from "react-icons/md";
+import { TbMapSearch } from "react-icons/tb";
+import { SiFormstack } from "react-icons/si";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
 // import { auth, signOut } from "@/app/auth";
@@ -24,12 +24,12 @@ const menuItems = [
       {
         title: "Formulaires",
         path: "/dashboard/forms",
-        icon: <MdSupervisedUserCircle />,
+        icon: <SiFormstack />,
       },
       {
         title: "Maps",
         path: "/dashboard/maps",
-        icon: <MdShoppingBag />,
+        icon: <TbMapSearch />,
       },
       // {
       //   title: "Transactions",

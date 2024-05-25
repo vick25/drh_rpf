@@ -13,6 +13,10 @@ export const metadata = {
 
 const Dashboard = async () => {
   const assetID = process.env.ASSETID;
+  // const data = await Promise.all([
+  //   fetchKoboForms,
+  //   getFormDatas
+  // ]);
 
   const koboForms = await fetchKoboForms();
 

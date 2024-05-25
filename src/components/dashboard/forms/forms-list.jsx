@@ -1,17 +1,36 @@
-import React from 'react'
+'use client'
+
 import styles from "@/components/dashboard/forms/forms.module.css";
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
 import Link from "next/link";
+import { useState, useEffect, useContext } from 'react';
 import { FormsContext } from "@/contexts/formsContext";
 
-const FormsList = () => {
+const FormsList = ({ q, page, itemsPerPage }) => {
     const { state: { selectedForm } } = useContext(FormsContext);
+    const [count, setCount] = useState(0);
+    const [paginatedData, setPaginatedData] = useState([]);
+
+    useEffect(() => {
+        console.log(page, selectedForm);
+        if (selectedForm) {
+            const regex = new RegExp(q, 'i');
+            const forms = selectedForm.filter(obj => regex.test(obj['group_hs1kr38/province']));
+            setCount(forms.length);
+
+            const paginated = forms.slice(
+                (page - 1) * itemsPerPage,
+                page * itemsPerPage
+            );
+            setPaginatedData(paginated);
+        }
+    }, [q, page]);
 
     return (
         <div className={styles.container}>
             <div className={styles.top}>
-                <Search placeholder="Search for a form province ..." />
+                <Search placeholder="Recherche par province ..." />
                 {/* <Link href="/dashboard/forms/add">
           <button className={styles.addButton} disabled>New Form</button>
         </Link> */}
@@ -55,8 +74,8 @@ const FormsList = () => {
                             {<td>
                                 <div className={styles.buttons}>
                                     {<Link href={`/dashboard/forms/${form['_id']}`}>
-                                        <button className={`${styles.button} ${styles.view}`}>
-                                            View
+                                        <button className={`${styles.button} ${styles.view} text-sm`} title="Voir plus de détails">
+                                            Afficher
                                         </button>
                                     </Link>
                                         //className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-50"
@@ -74,7 +93,8 @@ const FormsList = () => {
                     ))}
                 </tbody>
             </table>
-            <Pagination count={count} itemsPerPage={ITEM_PER_PAGE} />
+
+            <Pagination count={count} itemsPerPage={itemsPerPage} />
         </div>
     )
 }
