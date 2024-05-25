@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="container m-auto flex flex-col text-center p-20 bg-light border-8 border-transparent rounded-2xl sm:p-2">
+    <div className="container m-auto flex flex-col text-center p:4 md:p-8 bg-light border-8 border-transparent rounded-2xl sm:p-2">
       <header>
-        <div className="flex justify-around items-center">
+        <div className="flex flex-col gap-1 md:flex-row justify-around items-center">
           <Image
             className="rounded border-none"
             src={"/images/rdc.png"}
@@ -20,7 +20,7 @@ export default function Home() {
           />
           <h1 className="text-white font-semibold text-4xl">Bienvenu à la Direction de Reboisement et Horticulture !</h1>
           <Image
-            className="rounded border-none"
+            className="rounded border-none hidden md:block"
             src={"/logo-medd.jpg" || "/noavatar.png"}
             alt="Ministère de l'Environnement et de Dévéloppement durable"
             width="70"
@@ -32,7 +32,7 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="my-4 relative block py-20 lg:pt-0 bg-gray-900">
+      <section className="my-4 relative block py-5 lg:pt-15 bg-gray-900">
         <div className="container relative mx-auto mb-8">
           <div className="items-center flex flex-wrap">
             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
