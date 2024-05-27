@@ -23,6 +23,7 @@ const Chart = ({ formDatas }) => {
             selectedForm: formDatas
           }
         })
+        localStorage.setItem("forms", JSON.stringify(formDatas));
       }
     };
 

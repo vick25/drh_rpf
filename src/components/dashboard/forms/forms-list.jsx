@@ -9,14 +9,25 @@ import { FormsContext } from "@/contexts/formsContext";
 
 const FormsList = ({ q, page, itemsPerPage }) => {
     const { state: { selectedForm } } = useContext(FormsContext);
+
     const [count, setCount] = useState(0);
     const [paginatedData, setPaginatedData] = useState([]);
 
     useEffect(() => {
-        console.log(page, selectedForm);
-        if (selectedForm) {
-            const regex = new RegExp(q, 'i');
+        // console.log(page, selectedForm);
+        const regex = new RegExp(q, 'i');
+
+        if (selectedForm.length > 0) {
             const forms = selectedForm.filter(obj => regex.test(obj['group_hs1kr38/province']));
+            setCount(forms.length);
+
+            const paginated = forms.slice(
+                (page - 1) * itemsPerPage,
+                page * itemsPerPage
+            );
+            setPaginatedData(paginated);
+        } else {
+            const forms = JSON.parse(localStorage.getItem('forms'));
             setCount(forms.length);
 
             const paginated = forms.slice(

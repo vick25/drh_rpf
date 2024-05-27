@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Image from "next/image";
 import Link from "next/link";
+import { BsFillExclamationTriangleFill } from "react-icons/bs";
 
 export const metadata: Metadata = {
   title: 'Acceuil | DRH Restauration',
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="container m-auto flex flex-col text-center p:4 md:p-8 bg-light border-8 border-transparent rounded-2xl sm:p-2">
-      <header>
+    <div className="container m-auto flex flex-col text-center p-4 md:p-8 bg-light border-8 border-transparent rounded-2xl sm:p-2">
+      <header className='w-full'>
         <div className="flex flex-col gap-1 md:flex-row justify-around items-center">
           <Image
             className="rounded border-none"
@@ -32,7 +33,7 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="my-4 relative block py-5 lg:pt-15 bg-gray-900">
+      <section className="my-8 relative block py-5 lg:pt-15 bg-gray-900">
         <div className="container relative mx-auto mb-8">
           <div className="items-center flex flex-wrap">
             <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
@@ -49,10 +50,7 @@ export default function Home() {
       </section>
 
       <footer className="relative bg-gray-300 pt-5 pb-3">
-        <div
-          className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-          style={{ height: "80px" }}
-        >
+        <div className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20" style={{ height: "80px" }}>
           <svg
             className="absolute bottom-0 overflow-hidden"
             xmlns="http://www.w3.org/2000/svg"
@@ -62,29 +60,30 @@ export default function Home() {
             x="0"
             y="0"
           >
-            <polygon
-              className="text-gray-300 fill-current"
-              points="2560 0 2560 100 0 100"
-            ></polygon>
+            <polygon className="text-gray-300 fill-current"
+              points="2560 0 2560 100 0 100"></polygon>
           </svg>
         </div>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap">
             <div className="flex flex-col items-center w-full lg:w-6/12 px-4">
               <h4 className="text-2xl text-black font-semibold">
-                Consultance financé par
+                Consultance financée par
               </h4>
               <div className="mt-2">
                 <Image src="/images/wwf.png" width={60} height={60} alt="logo de WWF" className="shadow rounded max-w-full border-none" />
               </div>
             </div>
-            {/* <div className="w-full lg:w-6/12 px-4">
+            <div className="w-full lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <span className="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                    Useful Links
+                  <span className="block uppercase text-red-600 text-sm font-semibold mb-2">
+                    Avertissement
                   </span>
-                  <ul className="list-unstyled">
+                  <p className='text-xs text-[#721c24]'>
+                    Cette première version de cette application est à utiliser avec précaution car elle est en phase expérimentale.
+                  </p>
+                  {/*   <ul className="list-unstyled">
                     <li>
                       <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                         href="https://www.creative-tim.com/presentation">About Us
@@ -106,11 +105,11 @@ export default function Home() {
                       </a>
                     </li>
 
-                  </ul>
+                  </ul>*/}
                 </div>
 
               </div>
-            </div> */}
+            </div>
           </div>
 
           <hr className="my-4 border-gray-400" />
@@ -120,7 +119,7 @@ export default function Home() {
               <div className="text-sm text-gray-600 font-semibold py-1">
                 Copyright © {new Date().getFullYear()}{" "}DRH by{" "}
                 <a
-                  href="https://www.creative-tim.com"
+                  href="https://github.com/vick25"
                   className="text-gray-600 hover:text-gray-900"
                 >
                   Vick Dev

@@ -22,14 +22,14 @@ const menuItems = [
         icon: <MdDashboard />,
       },
       {
-        title: "Formulaires",
-        path: "/dashboard/forms",
-        icon: <SiFormstack />,
-      },
-      {
         title: "Maps",
         path: "/dashboard/maps",
         icon: <TbMapSearch />,
+      },
+      {
+        title: "Formulaires",
+        path: "/dashboard/forms",
+        icon: <SiFormstack />,
       },
       // {
       //   title: "Transactions",
@@ -59,7 +59,7 @@ const menuItems = [
     ],
   },
   {
-    title: "User",
+    title: "Système",
     list: [
       {
         title: "Paramètres",
@@ -67,7 +67,7 @@ const menuItems = [
         icon: <MdOutlineSettings />,
       },
       {
-        title: "Help",
+        title: "Aide",
         path: "/dashboard/help",
         icon: <MdHelpCenter />,
       },

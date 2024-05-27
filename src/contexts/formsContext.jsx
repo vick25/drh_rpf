@@ -21,7 +21,9 @@ export const FormsContext = createContext(initialState);
 export default function FormsProvider({ children }) {
     const [state, dispatch] = useReducer(formsReducer, initialState);
 
-    return <FormsContext.Provider value={{ state, dispatch }}>
-        {children}
-    </FormsContext.Provider>
+    return (
+        <FormsContext.Provider value={{ state, dispatch }}>
+            {children}
+        </FormsContext.Provider>
+    )
 };
