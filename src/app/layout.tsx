@@ -1,3 +1,4 @@
+import FormsProviders from "@/contexts/formsContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../components/globals.css";
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main>
-          {children}
+          <FormsProviders>
+            {children}
+          </FormsProviders>
         </main>
       </body>
     </html>

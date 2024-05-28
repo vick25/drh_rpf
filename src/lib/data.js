@@ -33,8 +33,8 @@ export const fetchFormData = async (formId, q, page, itemsPerPage) => {
     //https://kf.kobotoolbox.org/api/v2/assets/${formId}/data.json
     try {
         const response = await axios.get(`https://kf.kobotoolbox.org/api/v2/assets/${formId}/data/`, { headers: headers });
-        const count = await response.data.results.filter(obj => regex.test(obj['group_hs1kr38/province'])).length;
         const forms = await response.data.results.filter(obj => regex.test(obj['group_hs1kr38/province']));
+        const count = forms.length;
 
         // console.log(count, forms)
 
@@ -45,7 +45,7 @@ export const fetchFormData = async (formId, q, page, itemsPerPage) => {
         // console.log(paginatedData);
 
         // console.log(response.data); 
-        return { count, paginatedData };
+        return { count, paginatedData, forms };
         // return response.data;
     } catch (error) {
         console.error('Error fetching form data:', error);
@@ -73,3 +73,12 @@ export const fetchGeoJsonData = async () => {
         console.error('Error fetching form data:', error);
     }
 }
+
+export const getFormDatas = async () => {
+    try {
+        const response = await axios.get(`https://kf.kobotoolbox.org/api/v2/assets/${assetID}/data/`, { headers: headers });
+        return response.data.results;
+    } catch (error) {
+        console.error('Error fetching form data:', error);
+    }
+};

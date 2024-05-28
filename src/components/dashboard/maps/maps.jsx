@@ -1,19 +1,20 @@
 'use client';
-import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
+
 import React, { useEffect, useRef, useState } from "react";
 import { CircleMarker, LayersControl, MapContainer, Popup, TileLayer, Tooltip, useMapEvents } from "react-leaflet";
 // import markerIcon from "leaflet/dist/images/marker-icon.png";
 // import markerShadow from "leaflet/dist/images/marker-shadow.png";
 // import markerRetina from "leaflet/dist/images/marker-icon-2x.png";
-import { kmlString } from "@/lib/kml";
+import MarkerClusterGroup from '@changey/react-leaflet-markercluster';
+import "leaflet/dist/leaflet.css";
 import "@changey/react-leaflet-markercluster/dist/styles.min.css";
-import Leaflet from "leaflet";
-import "leaflet-control-geocoder";
 import 'leaflet-defaulticon-compatibility';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
-import "leaflet/dist/leaflet.css";
+import "leaflet-control-geocoder";
+import Leaflet from "leaflet";
 import Link from "next/link";
 import styles from "./maps.module.css";
+import { kmlString } from "@/lib/kml";
 // import { popup } from "leaflet";
 
 // Leaflet.Icon.Default.mergeOptions({

@@ -1,5 +1,5 @@
 // import { cards } from "../lib/data";
-import { fetchKoboForms } from "@/lib/data";
+import { fetchKoboForms, getFormDatas } from "@/lib/data";
 import Link from "next/link";
 import Card from "../../components/dashboard/card/card";
 import Chart from "../../components/dashboard/chart/chart";
@@ -13,8 +13,15 @@ export const metadata = {
 
 const Dashboard = async () => {
   const assetID = process.env.ASSETID;
+  // const data = await Promise.all([
+  //   fetchKoboForms,
+  //   getFormDatas
+  // ]);
 
   const koboForms = await fetchKoboForms();
+
+  const formDatas = await getFormDatas();
+  // console.log(response);
 
   const uniqueForm = koboForms.filter((form) => form.uid === assetID);
   // console.log(uniqueForm[0].settings.description);
@@ -32,7 +39,7 @@ const Dashboard = async () => {
         </div>
 
         {/* <Transactions />*/
-          <Chart />
+          <Chart formDatas={formDatas} />
         }
 
         <div>

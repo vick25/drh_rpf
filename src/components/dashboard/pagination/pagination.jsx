@@ -32,14 +32,14 @@ const Pagination = ({ count, itemsPerPage }) => {
         disabled={!hasPrev}
         onClick={() => handleChangePage("prev")}
       >
-        Previous
+        Précédent
       </button>
       <button
         className={styles.button}
         disabled={!hasNext}
         onClick={() => handleChangePage("next")}
       >
-        Next
+        Suivant
       </button>
     </div>
   );

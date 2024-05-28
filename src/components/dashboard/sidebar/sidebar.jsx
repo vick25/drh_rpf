@@ -4,17 +4,17 @@ import {
   MdAnalytics,
   MdDashboard,
   MdHelpCenter,
-  MdOutlineSettings,
-  MdShoppingBag,
-  MdSupervisedUserCircle
+  MdOutlineSettings
 } from "react-icons/md";
+import { TbMapSearch } from "react-icons/tb";
+import { SiFormstack } from "react-icons/si";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
 // import { auth, signOut } from "@/app/auth";
 
 const menuItems = [
   {
-    title: "Pages",
+    title: "Projets de restauration",
     list: [
       {
         title: "Dashboard",
@@ -22,14 +22,14 @@ const menuItems = [
         icon: <MdDashboard />,
       },
       {
-        title: "Maps",
+        title: "Localisation",
         path: "/dashboard/maps",
-        icon: <MdShoppingBag />,
+        icon: <TbMapSearch />,
       },
       {
-        title: "Formulaires",
+        title: "Formulaires collectés",
         path: "/dashboard/forms",
-        icon: <MdSupervisedUserCircle />,
+        icon: <SiFormstack />,
       },
       // {
       //   title: "Transactions",
@@ -59,7 +59,7 @@ const menuItems = [
     ],
   },
   {
-    title: "User",
+    title: "Système",
     list: [
       {
         title: "Paramètres",
@@ -67,7 +67,7 @@ const menuItems = [
         icon: <MdOutlineSettings />,
       },
       {
-        title: "Help",
+        title: "Aide",
         path: "/dashboard/help",
         icon: <MdHelpCenter />,
       },
