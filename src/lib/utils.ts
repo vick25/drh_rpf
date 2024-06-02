@@ -44,6 +44,20 @@ export const generateChartData = (formsData: any) => {
   }
 };
 
+export function generateNumberRanges(
+  totalNumber: number,
+  groupNumber: number
+): string[] {
+  const ranges = [];
+
+  for (let i = 0; i < groupNumber; i++) {
+    const start = Math.floor(i * (totalNumber / groupNumber));
+    const end = Math.floor((i + 1) * (totalNumber / groupNumber) - 1);
+    ranges.push(`${start}-${end}`);
+  }
+
+  return ranges;
+}
 // export const generateYAxis = (revenue: Revenue[]) => {
 //   // Calculate what labels we need to display on the y-axis
 //   // based on highest record and in 1000s

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Statistics from '@/components/dashboard/chart/statistics';
 
 const ReportsPages = () => {
     return (
@@ -8,6 +9,7 @@ const ReportsPages = () => {
             </svg>
             <h1 className='text-4xl font-bold text-gray-500'>Page en construction...</h1>
             <p className="text-xl text-gray-600 mt-4">We're working hard to bring you a better experience. Stay tuned!</p>
+            <Statistics />
         </div>
     )
 }
