@@ -38,7 +38,7 @@ const MapComponent = ({ geojsonData }) => {
     const zoom = 5;
     const containerStyle = {
         width: "100%",
-        height: "100dvh"
+        height: "90dvh"
     }
     const center = {
         lat: -3.626137,

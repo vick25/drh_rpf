@@ -36,7 +36,7 @@ const FormsList = ({ q, page, itemsPerPage }) => {
             );
             setPaginatedData(paginated);
         }
-    }, [q, page]);
+    }, [q, page, itemsPerPage, selectedForm]);
 
     return (
         <div className={styles.container}>

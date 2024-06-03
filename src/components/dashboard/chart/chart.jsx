@@ -38,7 +38,7 @@ const Chart = ({ formDatas }) => {
     };
 
     retrieveFormDatas();
-  }, [])
+  }, [dispatch, formDatas])
 
   useEffect(() => {
     // setProvincesDatas(generateChartData(kbformDatas));
@@ -85,7 +85,7 @@ const Chart = ({ formDatas }) => {
                   <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF'][index % 5]} />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip contentStyle={{ background: "#151c2c", border: "none" }} />
             </PieChart>
           </ResponsiveContainer>
         );
