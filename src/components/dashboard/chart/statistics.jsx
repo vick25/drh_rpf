@@ -85,7 +85,7 @@ const Statistics = () => {
 
     return (
         <div className="px-4 py-8 md:py-12 min-h-screen w-full mx-auto">
-            <div class="flex items-center justify-between mb-6">
+            <div className="flex flex-col lg:flex-row items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold mb-4">US State Statistics</h1>
                 <div className="mb-4 flex items-baseline gap-1">
                     <label className="block text-sm font-bold mb-2" htmlFor="state-select">
@@ -97,7 +97,7 @@ const Statistics = () => {
                         ))}
                     </select>
                 </div>
-                <div className="flex space-x-2 items-center mb-4">
+                <div className="flex flex-col gap-2 md:ml-2 sm:flex-row space-x-2 items-center justify-center mb-4">
                     <button className={`p-2 flex gap-2 rounded hover:bg-gray-400 ${chartType === 'bar' ? 'bg-blue-700 text-white' : 'bg-blue-500 text-white'}`}
                         onClick={() => setChartType('bar')}>
                         <BsBarChartLine className="w-5 h-5" />

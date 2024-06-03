@@ -1,4 +1,22 @@
 // import { Revenue } from './definitions';
+type DataItem = {
+  "group_io1lf88/structure_execution": string;
+  "group_hs1kr38/province": string;
+  "group_hs1kr38/territoire_ville": string;
+  "group_hs1kr38/secteur_chefferie_commune"?: string;
+  "group_up0wa79/superficie_ha": string;
+  "group_zo3pb27/opportunites_restauration"?: string;
+};
+
+type ProvinceData = {
+  structure_execution: string;
+  superficie_ha: string;
+  opportunites_restauration?: string;
+};
+
+type ProvincesData = {
+  [province: string]: ProvinceData[];
+};
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString("en-US", {
@@ -37,6 +55,35 @@ export const generateChartData = (formsData: any) => {
 
       chartData.push({ name, Superficie, Restauration });
     });
+
+    return chartData;
+  } catch (parseError) {
+    console.error("Error parsing file:", parseError);
+  }
+};
+
+export const generateChartDataByProvince = (formsData: any) => {
+  try {
+    const chartData: ProvincesData = formsData.reduce((acc: any, item: any) => {
+      const {
+        "group_io1lf88/structure_execution": name,
+        "group_hs1kr38/province": province,
+        "group_hs1kr38/territoire_ville": territoireVille,
+        "group_up0wa79/superficie_ha": superficie_ha,
+        "group_zo3pb27/opportunites_restauration": restauration_ha,
+      } = item;
+
+      if (!acc[province]) {
+        acc[province] = [];
+      }
+      acc[province].push({
+        name,
+        Territoire: territoireVille,
+        Superficie: Number(superficie_ha),
+        Restauration: Number(restauration_ha),
+      });
+      return acc;
+    }, {} as ProvincesData);
 
     return chartData;
   } catch (parseError) {
