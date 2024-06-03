@@ -39,7 +39,7 @@ const menuItems = [
     ],
   },
   {
-    title: "Analytics",
+    title: "Analyses",
     list: [
       // {
       //   title: "Revenue",
