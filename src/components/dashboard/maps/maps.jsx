@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import { CircleMarker, LayersControl, MapContainer, Popup, TileLayer, Tooltip, useMapEvents } from "react-leaflet";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { CircleMarker, LayersControl, MapContainer, Popup, TileLayer, Tooltip, useMapEvents, GeoJSON } from "react-leaflet";
 // import markerIcon from "leaflet/dist/images/marker-icon.png";
 // import markerShadow from "leaflet/dist/images/marker-shadow.png";
 // import markerRetina from "leaflet/dist/images/marker-icon-2x.png";
@@ -15,6 +15,8 @@ import Leaflet from "leaflet";
 import Link from "next/link";
 import styles from "./maps.module.css";
 import { kmlString } from "@/lib/kml";
+import { features } from "@/app/data/provinces_rdc.json"
+import { FormsContext } from "@/contexts/formsContext";
 // import { popup } from "leaflet";
 
 // Leaflet.Icon.Default.mergeOptions({
@@ -24,10 +26,14 @@ import { kmlString } from "@/lib/kml";
 // });
 
 const MapComponent = ({ geojsonData }) => {
+    const { state: { selectedForm } } = useContext(FormsContext);
+    console.log(selectedForm);
 
     const map_container_ref = useRef(null);
     const popupRef = useRef(null);
     const { BaseLayer } = LayersControl;
+
+    const [provinces, setProvinces] = useState([]);
 
     const zoom = 5;
     const containerStyle = {
@@ -38,99 +44,6 @@ const MapComponent = ({ geojsonData }) => {
         lat: -3.626137,
         lng: 22.821603
     }
-    const initialMarkers = [
-        {
-            position: {
-                lat: -4.625485,
-                lng: 15.821091
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -5.625293,
-                lng: 23.817926
-            },
-            draggable: false
-        },
-        {
-            position: {
-                lat: -1.625182,
-                lng: 20.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -8.625182,
-                lng: 25.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: 2.625182,
-                lng: 30.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: 1.625182,
-                lng: 18.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -7.625182,
-                lng: 25.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -4.625182,
-                lng: 25.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -8.625182,
-                lng: 27.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -7.625182,
-                lng: 26.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -9.625182,
-                lng: 23.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -9.125182,
-                lng: 22.81464
-            },
-            draggable: true
-        },
-        {
-            position: {
-                lat: -10.325182,
-                lng: 22.31464
-            },
-            draggable: true
-        },
-    ];
 
     const [markers, setMarkers] = useState(geojsonData);
     const [markerData, setMarkerData] = useState([]);
@@ -164,6 +77,10 @@ const MapComponent = ({ geojsonData }) => {
                 flyToMarker(markerData.coordinates, 11);
             }
     }, [markerData]);
+
+    useEffect(() => {
+        setProvinces(features);
+    }, []);
 
     const MapContent = ({ onClick }) => {
         const map = useMapEvents({
@@ -222,17 +139,27 @@ const MapComponent = ({ geojsonData }) => {
         </CircleMarker>
     };
 
-    const onEachFeature = (feature, layer) => {
-        // console.log(feature);
-        if (feature.properties) {
-            const popupContent = feature.properties["group_io1lf88/structure_execution"];
-            layer.bindPopup(popupContent); // Customize the popup content as needed
+    const onEachFeature = (province, layer) => {
+        // console.log(province);
+        let popupContent = province.properties.nom;
+        if (province.properties) {
+            if (selectedForm) {
+                const count = selectedForm.reduce((acc, obj) => {
+                    if (obj['group_hs1kr38/province'] === popupContent) {
+                        return acc + 1;
+                    }
+                    return acc;
+                }, 0);
+                popupContent += ` ${count}`;
+            }
+            // layer.options.fillColor = "red";
+            layer.bindPopup(`${popupContent}`); // Customize the popup content as needed
         }
-        layer.on({
-            mouseover: onMouseOver,
-            mouseout: onMouseOut,
-            click: zoomToFeature
-        });
+        // layer.on({
+        //     mouseover: onMouseOver,
+        //     mouseout: onMouseOut,
+        //     click: zoomToFeature
+        // });
     };
 
     // const geojsonMarkerOptions = {
@@ -267,8 +194,15 @@ const MapComponent = ({ geojsonData }) => {
     //     </Marker>
     // }
 
+    const provincesStyle = {
+        fillColor: '#FFFFFF',
+        weight: 1,
+        color: '#000',
+        fillOpacity: 0.7
+    };
+
     return (
-        <MapContainer k
+        <MapContainer
             ref={map_container_ref}
             style={containerStyle}
             center={center}
@@ -277,16 +211,16 @@ const MapComponent = ({ geojsonData }) => {
             scrollWheelZoom={true}
         >
             <LayersControl>
-                <BaseLayer checked name="OpenStreetMap">
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                </BaseLayer>
-                <BaseLayer name="ArcGIS World">
+                <BaseLayer checked name="ArcGIS World">
                     <TileLayer
                         url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
                         attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                    />
+                </BaseLayer>
+                <BaseLayer name="OpenStreetMap">
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
                 </BaseLayer>
                 <BaseLayer name="Open Topography">
@@ -302,8 +236,9 @@ const MapComponent = ({ geojsonData }) => {
                 onClick={mapClicked}
             />
 
+            <GeoJSON style={provincesStyle} data={provinces} onEachFeature={onEachFeature} />
+
             <MarkerClusterGroup chunkedLoading>
-                {/* <GeoJSON data={geojsonData} onEachFeature={onEachFeature} /> */}
                 {geojsonData.features.map((feature, index) => (
                     <CircleMarkerContent
                         key={index}
