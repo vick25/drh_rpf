@@ -40,6 +40,14 @@ const MapComponent = ({ geojsonData }) => {
         width: "100%",
         height: "90dvh"
     }
+    const createClusterCustomIcon = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'custom-marker-cluster',
+            iconSize: L.point(33, 33, true),
+        })
+    }
+
     const center = {
         lat: -3.626137,
         lng: 22.821603

@@ -13,17 +13,12 @@ export const metadata = {
 
 const Dashboard = async () => {
   const assetID = process.env.ASSETID;
-  // const data = await Promise.all([
-  //   fetchKoboForms,
-  //   getFormDatas
-  // ]);
+  const [koboForms, formDatas] = await Promise.allSettled([
+    fetchKoboForms(),
+    getFormDatas()
+  ]);
 
-  const koboForms = await fetchKoboForms();
-
-  const formDatas = await getFormDatas();
-  // console.log(response);
-
-  const uniqueForm = koboForms.filter((form) => form.uid === assetID);
+  const uniqueForm = koboForms.value.filter((form) => form.uid === assetID);
   // console.log(uniqueForm[0].settings.description);
   // console.log(uniqueForm[0].name);
   // console.log(uniqueForm[0].deployment__submission_count);
@@ -39,11 +34,13 @@ const Dashboard = async () => {
         </div>
 
         {/* <Transactions />*/
-          <Chart formDatas={formDatas} />
+          <Chart formDatas={formDatas.value} />
         }
 
-        <div>
-          <h3 className="text-base">Export links</h3>
+        <hr className="my-4 border-gray-400" />
+
+        <div className="w-full">
+          <h3 className="text-base">Liens d&apos;exportation</h3>
           {
             uniqueForm.map(uf => (
               uf.export_settings.map(setting => (

@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </div>
 
-        <Link className="bg-blue-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5" href="/dashboard">
+        <Link className="bg-blue-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 transition duration-300" href="/dashboard">
           Allez sur le dashboard
         </Link>
       </section>
@@ -65,49 +65,23 @@ export default function Home() {
           </svg>
         </div>
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap gap-3 lg:gap-0">
             <div className="flex flex-col items-center w-full lg:w-6/12 px-4">
               <h4 className="text-2xl text-black font-semibold">
                 Consultance financée par
               </h4>
               <div className="mt-2">
-                <Image src="/images/wwf.png" width={60} height={60} alt="logo de WWF" className="shadow rounded max-w-full border-none" />
+                <Image src="/images/wwf.png" width={60} height={60} alt="Logo de WWF" className="shadow rounded max-w-full border-none" />
               </div>
             </div>
             <div className="w-full lg:w-6/12 px-4">
-              <div className="flex flex-wrap items-top mb-6">
-                <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <span className="block uppercase text-red-600 text-sm font-semibold mb-2">
-                    Avertissement
-                  </span>
-                  <p className='text-xs text-[#721c24]'>
-                    Cette première version de cette application est à utiliser avec précaution car elle est en phase expérimentale.
-                  </p>
-                  {/*   <ul className="list-unstyled">
-                    <li>
-                      <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation">About Us
-                      </a>
-                    </li>
-                    <li>
-                      <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com">Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.github.com/creativetimofficial">Github
-                      </a>
-                    </li>
-                    <li>
-                      <a className="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free">Free Products
-                      </a>
-                    </li>
-
-                  </ul>*/}
-                </div>
-
+              <div className="flex flex-col items-center w-full lg:w-4/12 px-5 ml-auto">
+                <span className="block uppercase text-red-600 text-sm font-semibold mb-2">
+                  Avertissement
+                </span>
+                <p className='text-xs text-[#721c24]'>
+                  Cette première version de cette application est à utiliser avec précaution car elle est en phase expérimentale.
+                </p>
               </div>
             </div>
           </div>
